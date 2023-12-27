@@ -5,7 +5,7 @@
 import axios from "axios";
 
 
-const URL = "http://localhost:3001";
+//const URL = "http://localhost:3001";
 //const URL = "https://etniasoftcommerce.up.railway.app";
 
 const getFindSelects = async () => {
@@ -14,7 +14,7 @@ const getFindSelects = async () => {
         let allColors = [];
         let allSize = [];
        
-        const productsInfo = (await axios.get(`${URL}/products/all-products`)).data;
+        const productsInfo = (await axios.get(`/products/all-products`)).data;
         //obtiene todos los selects y quita espacios
         for (let i=0; i<productsInfo.length; i++){
             allCategories.push(productsInfo[i].category?.trim());

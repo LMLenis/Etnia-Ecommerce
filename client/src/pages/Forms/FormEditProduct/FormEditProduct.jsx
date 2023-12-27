@@ -59,7 +59,7 @@ const FormEditProduct = () => {
 
   useEffect (() => {
     async function getByID() {
-    const { data } = await axios.get(`http://localhost:3001/products/${id}`);
+    const { data } = await axios.get(`/${id}`);
     setInput(data)
     }
 

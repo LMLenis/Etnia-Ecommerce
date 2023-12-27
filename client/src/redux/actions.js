@@ -1,3 +1,4 @@
+/* eslint-disable spaced-comment */
 /* eslint-disable no-undef */
 /* eslint-disable arrow-body-style */
 /* eslint-disable consistent-return */
@@ -109,14 +110,14 @@ export const GET_REVIEW_BY_ID = 'GET_REVIEW_BY_ID';
 export const UPDATE_REVIEW = 'UPDATE_REVIEW';
 export const DELETE_REVIEW = 'DELETE_REVIEW';
 
-const URL = 'http://localhost:3001';
+//const URL = 'http://localhost:3001';
 // const URL = "https://etniasoftcommerce.up.railway.app";
 
 export const registroTerceros = (payload) => async (dispatch) => {
   console.log('holaaa desde la accion apenas entra');
   console.log(payload);
   try {
-    const info = await axios.post(`${URL}/users/registerTerceros`, payload, {
+    const info = await axios.post(`/users/registerTerceros`, payload, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -157,7 +158,7 @@ export function loadCart(newCart) {
 
 export function getAllReviews() {
   return async function (dispatch) {
-    const reviewsInfo = await axios.get(`${URL}/reviews`);
+    const reviewsInfo = await axios.get(`/reviews`);
     dispatch({
       type: GET_ALL_REVIEWS,
       payload: reviewsInfo.data,
@@ -166,7 +167,7 @@ export function getAllReviews() {
 }
 export function createReview(newReview) {
   return async function (dispatch) {
-    const reviews = await axios.post(`${URL}/reviews`, newReview);
+    const reviews = await axios.post(`/reviews`, newReview);
     dispatch({
       type: CREATE_REVIEW,
       payload: reviews.data,
@@ -176,7 +177,7 @@ export function createReview(newReview) {
 export function getReviewById(id) {
   console.log(id)
   return async function (dispatch) {
-    const reviewsInfo = await axios.get(`${URL}/reviews/${id}`);
+    const reviewsInfo = await axios.get(`/reviews/${id}`);
     console.log(reviewsInfo.data);
     dispatch({
       type: GET_REVIEW_BY_ID,
@@ -186,7 +187,7 @@ export function getReviewById(id) {
 }
 export function updateReview(payload) {
   return async function (dispatch) {
-    const info = await axios.put(`${URL}/${payload.id}`, payload);
+    const info = await axios.put(`/${payload.id}`, payload);
     dispatch({
       type: UPDATE_REVIEW,
       payload: info.data,
@@ -195,7 +196,7 @@ export function updateReview(payload) {
 }
 export function deleteReview(id) {
   return async function (dispatch) {
-    const deletedReviews = await axios.delete(`${URL}/reviews/${id}`);
+    const deletedReviews = await axios.delete(`/reviews/${id}`);
     dispatch({
       type: DELETE_REVIEW,
       payload: deletedReviews.data,
@@ -209,7 +210,7 @@ export function finishPurchase(objectPago) {
   return async function compra(dispatch) {
     console.log('entre a la compra');
     try {
-      const response = await axios.post(`${URL}/purchase/order`, objectPago);
+      const response = await axios.post(`/purchase/order`, objectPago);
       window.location.href = response.data.init_point;
 
       dispatch({
@@ -225,7 +226,7 @@ export function finishPurchase(objectPago) {
 
 export function getAllPurchases() {
   return async function (dispatch) {
-    const purchasesInfo = await axios.get(`${URL}/purchase`);
+    const purchasesInfo = await axios.get(`/purchase`);
     dispatch({
       type: GET_ALL_PURCHASES,
       payload: purchasesInfo.data,
@@ -235,7 +236,7 @@ export function getAllPurchases() {
 
 export function getUserPurchases(id) {
   return async function (dispatch) {
-    const purchasesInfo = await axios.get(`${URL}/purchase/${id}`);
+    const purchasesInfo = await axios.get(`/purchase/${id}`);
     dispatch({
       type: GET_USER_PURCHASES,
       payload: purchasesInfo.data,
@@ -244,7 +245,7 @@ export function getUserPurchases(id) {
 }
 export function getPurchaseDetail(payload) {
   return async function (dispatch) {
-    const productDetail = await axios.get(`${URL}/buyings/acceptpayment${payload}`);
+    const productDetail = await axios.get(`/buyings/acceptpayment${payload}`);
     dispatch({
       type: GET_PURCHASE_DETAIL,
       payload: productDetail,
@@ -256,7 +257,7 @@ export function getAllFavs(id) {
   console.log('me despacharon');
 
   return async function (dispatch) {
-    const response = await axios.get(`${URL}/favs/${id}`);
+    const response = await axios.get(`/favs/${id}`);
     dispatch({
       type: GET_ALL_FAVS,
       payload: response.data,
@@ -266,7 +267,7 @@ export function getAllFavs(id) {
 
 export function AddFavoriteBack(objectId) {
   return async function (dispatch) {
-    const response = await axios.post(`${URL}/favs`, objectId);
+    const response = await axios.post(`/favs`, objectId);
     dispatch({
       type: NEW_FAVORITE,
       payload: response.data,
@@ -276,7 +277,7 @@ export function AddFavoriteBack(objectId) {
 
 export function removeFavoriteBack(objectId) {
   return async function (dispatch) {
-    const response = await axios.put(`${URL}/favs`, objectId);
+    const response = await axios.put(`/favs`, objectId);
     dispatch({
       type: REMOVE_FAV_BACK,
       payload: response.data,
@@ -286,7 +287,7 @@ export function removeFavoriteBack(objectId) {
 
 export function getAllCarts(id) {
   return async function (dispatch) {
-    const response = await axios.get(`${URL}/cart/${id}`);
+    const response = await axios.get(`/cart/${id}`);
     dispatch({
       type: GET_ALL_CARTS,
       payload: response.data,
@@ -303,7 +304,7 @@ export function addToCart(product) {
 
 export function AddCartBack(objectId) {
   return async function (dispatch) {
-    const response = await axios.post(`${URL}/cart`, objectId);
+    const response = await axios.post(`/cart`, objectId);
     dispatch({
       type: NEW_CART,
       payload: response.data,
@@ -313,7 +314,7 @@ export function AddCartBack(objectId) {
 
 export function removeCartBack(objectId) {
   return async function (dispatch) {
-    const response = await axios.put(`${URL}/cart`, objectId);
+    const response = await axios.put(`/cart`, objectId);
     dispatch({
       type: REMOVE_CART_BACK,
       payload: response.data,
@@ -323,7 +324,7 @@ export function removeCartBack(objectId) {
 
 export function getCuentas() {
   return async function (dispatch) {
-    const cuentasInfo = await axios.get(`${URL}/cuentas`);
+    const cuentasInfo = await axios.get(`/cuentas`);
 
     dispatch({
       type: GET_CUENTAS,
@@ -334,7 +335,7 @@ export function getCuentas() {
 
 export function getEmpresa() {
   return async function (dispatch) {
-    const empresaInfo = await axios.get(`${URL}/empresa`);
+    const empresaInfo = await axios.get(`/empresa`);
     dispatch({
       type: GET_EMPRESA,
       payload: empresaInfo.data.results,
@@ -344,7 +345,7 @@ export function getEmpresa() {
 
 export function getMedioPago() {
   return async function (dispatch) {
-    const mediopagoInfo = await axios.get(`${URL}/mediopago`);
+    const mediopagoInfo = await axios.get(`/mediopago`);
 
     dispatch({
       type: GET_MEDIOPAGO,
@@ -355,7 +356,7 @@ export function getMedioPago() {
 
 export function getLogistica() {
   return async function (dispatch) {
-    const logisticaInfo = await axios.get(`${URL}/logistica`);
+    const logisticaInfo = await axios.get(`/logistica`);
 
     dispatch({
       type: GET_LOGISTICA,
@@ -368,7 +369,7 @@ export function createLogistica(newLogistica) {
   return async function (dispatch) {
     try {
       console.log('logistica');
-      const info = await axios.post(`${URL}/tables/postlogistica`, newLogistica);
+      const info = await axios.post(`/tables/postlogistica`, newLogistica);
       dispatch({
         type: CREATE_LOGISTICA,
         payload: info.data,
@@ -381,7 +382,7 @@ export function createLogistica(newLogistica) {
 
 export function createEmpresa(newEmpresa) {
   return async function (dispatch) {
-    const info = await axios.post(`${URL}/empresa`, newEmpresa);
+    const info = await axios.post(`/empresa`, newEmpresa);
     dispatch({
       type: CREATE_EMPRESA,
       payload: info.data,
@@ -391,7 +392,7 @@ export function createEmpresa(newEmpresa) {
 
 export function createCuentas(newCuentas) {
   return async function (dispatch) {
-    const info = await axios.post(`${URL}/cuentas`, newCuentas);
+    const info = await axios.post(`/cuentas`, newCuentas);
     dispatch({
       type: CREATE_CUENTAS,
       payload: info.data,
@@ -401,7 +402,7 @@ export function createCuentas(newCuentas) {
 
 export function createMediopago(newMediopago) {
   return async function (dispatch) {
-    const info = await axios.post(`${URL}/mediopago`, newMediopago);
+    const info = await axios.post(`/mediopago`, newMediopago);
     dispatch({
       type: CREATE_MEDIOPAGO,
       payload: info.data,
@@ -413,7 +414,7 @@ export function createProduct(newproduct) {
   console.log(newproduct);
   return async function (dispatch) {
     try {
-      const { data } = await axios.post(`${URL}/products`, newproduct);
+      const { data } = await axios.post(`/products`, newproduct);
       console.log(data);
       console.log(newproduct);
 
@@ -429,7 +430,7 @@ export function createProduct(newproduct) {
 
 export function deleteEmpresa(id) {
   return async function (dispatch) {
-    const deletedEmpresa = await axios.delete(`${URL}/empresa/${id}`);
+    const deletedEmpresa = await axios.delete(`/empresa/${id}`);
     dispatch({
       type: DELETE_EMPRESA,
       payload: deletedEmpresa.data,
@@ -439,7 +440,7 @@ export function deleteEmpresa(id) {
 
 export function deleteCuentas(id) {
   return async function (dispatch) {
-    const deletedCuentas = await axios.delete(`${URL}/cuentas/${id}`);
+    const deletedCuentas = await axios.delete(`/cuentas/${id}`);
     dispatch({
       type: DELETE_CUENTAS,
       payload: deletedCuentas.data,
@@ -449,7 +450,7 @@ export function deleteCuentas(id) {
 
 export function deleteMediopago(id) {
   return async function (dispatch) {
-    const deletedMediopago = await axios.delete(`${URL}/mediopago/${id}`);
+    const deletedMediopago = await axios.delete(`/mediopago/${id}`);
     dispatch({
       type: DELETE_MEDIOPAGO,
       payload: deletedMediopago.data,
@@ -459,7 +460,7 @@ export function deleteMediopago(id) {
 
 export function deleteLogistica(id) {
   return async function (dispatch) {
-    const deletedLogistica = await axios.delete(`${URL}/logistica/${id}`);
+    const deletedLogistica = await axios.delete(`/logistica/${id}`);
     dispatch({
       type: DELETE_LOGISTICA,
       payload: deletedLogistica.data,
@@ -469,7 +470,7 @@ export function deleteLogistica(id) {
 
 export function updateEmpresa(payload) {
   return async function (dispatch) {
-    const info = await axios.put(`${URL}/${payload.id}`, payload);
+    const info = await axios.put(`/${payload.id}`, payload);
     dispatch({
       type: UPDATE_EMPRESA,
       payload: info.data,
@@ -479,7 +480,7 @@ export function updateEmpresa(payload) {
 
 export function updateCuentas(payload) {
   return async function (dispatch) {
-    const info = await axios.put(`${URL}/${payload.id}`, payload);
+    const info = await axios.put(`/${payload.id}`, payload);
     dispatch({
       type: UPDATE_CUENTAS,
       payload: info.data,
@@ -490,7 +491,7 @@ export function updateCuentas(payload) {
 export function updateMediopago(payload) {
   return async function (dispatch) {
     try {
-      const info = await axios.put(`${URL}/${payload.id}`, payload);
+      const info = await axios.put(`/${payload.id}`, payload);
       dispatch({
         type: UPDATE_MEDIOPAGO,
         payload: info.data,
@@ -504,7 +505,7 @@ export function updateMediopago(payload) {
 export function updateLogistica(payload) {
   return async function (dispatch) {
     try {
-      const info = await axios.put(`${URL}/tables/putlogistica/${payload.id}`, payload);
+      const info = await axios.put(`/tables/putlogistica/${payload.id}`, payload);
       dispatch({
         type: UPDATE_LOGISTICA,
         payload: info.data,
@@ -517,7 +518,7 @@ export function updateLogistica(payload) {
 
 export function getAllProducts() {
   return async function (dispatch) {
-    const productsInfo = await axios.get(`${URL}/products`);
+    const productsInfo = await axios.get(`/products`);
     console.log(productsInfo);
     dispatch({
       type: GET_ALL_PRODUCTS,
@@ -541,7 +542,7 @@ export function confirmToken(token) {
     try {
       console.log('hola');
       console.log(token);
-      const { data } = await axios.get(`${URL}/users/confirm/${token}`);
+      const { data } = await axios.get(`/users/confirm/${token}`);
       console.log(data);
       dispatch({
         type: CONFITRM_TOKEN,
@@ -562,7 +563,7 @@ export function registerUser(payload) {
   console.log('register');
   return async function (dispatch) {
     try {
-      const respuesta = await axios.post(`${URL}/users/register`, payload);
+      const respuesta = await axios.post(`/users/register`, payload);
       console.log('sigue la data');
       console.log(respuesta);
       dispatch({
@@ -660,7 +661,7 @@ export function clearErrors() {
 
 export function getProductsname(name) {
   return async function (dispatch) {
-    const productsname = (await axios.get(`${URL}/products/name/${name}`)).data;
+    const productsname = (await axios.get(`/products/name/${name}`)).data;
     dispatch({
       type: GET_PRODUCTS_BY_NAME,
       payload: productsname,
@@ -670,7 +671,7 @@ export function getProductsname(name) {
 
 export function getByID(id) {
   return async function (dispatch) {
-    const { data } = await axios.get(`${URL}/products/${id}`);
+    const { data } = await axios.get(`/products/${id}`);
     console.log(data);
     dispatch({
       type: GET_BY_ID,
@@ -682,7 +683,7 @@ export function getByID(id) {
 export function getUserByID(id) {
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`${URL}/users/${id}`);
+      const { data } = await axios.get(`/users/${id}`);
       console.log(data);
       dispatch({
         type: GET_USER_BY_ID,
@@ -696,7 +697,7 @@ export function getUserByID(id) {
 
 export function getUsersByName(name) {
   return async function (dispatch) {
-    const response = (await axios.get(`${URL}` + name)).data;
+    const response = (await axios.get(`` + name)).data;
     dispatch({
       type: GET_USERS_BY_NAME,
       payload: response,
@@ -706,7 +707,7 @@ export function getUsersByName(name) {
 
 export function getAllUsers() {
   return async function (dispatch) {
-    const allUsers = await axios.get(`${URL}/users`);
+    const allUsers = await axios.get(`/users`);
     dispatch({
       type: GET_ALL_USERS,
       payload: allUsers.data,
@@ -717,7 +718,7 @@ export function updateProduct(payload) {
   return async function (dispatch) {
     try {
       console.log(payload.id);
-      const info = await axios.put(`${URL}/products/put/${payload.id}`, payload);
+      const info = await axios.put(`/products/put/${payload.id}`, payload);
       dispatch({
         type: UPDATE_PRODUCT,
         payload: info.data,
@@ -730,7 +731,7 @@ export function updateProduct(payload) {
 
 export function deleteProduct(id) {
   return async function (dispatch) {
-    const deletedProduct = await axios.delete(`${URL}/products/delete/${id}`);
+    const deletedProduct = await axios.delete(`/products/delete/${id}`);
     dispatch({
       type: DELETE_PRODUCT,
       payload: deletedProduct.data,
@@ -755,7 +756,7 @@ export function getAddFavorites(product) {
 export function deleteUser(id) {
   return async function (dispatch) {
     try {
-      const deletedUser = await axios.delete(`${URL}/users/delete/${id}`);
+      const deletedUser = await axios.delete(`/users/delete/${id}`);
       getAllUsers();
       dispatch({
         type: DELETE_USER,
@@ -781,7 +782,7 @@ export function deleteUser(id) {
 
 export function updateUser(payload) {
   return async function (dispatch) {
-    const info = await axios.put(`${URL}/users/put/${payload.id}`, payload);
+    const info = await axios.put(`/users/put/${payload.id}`, payload);
     dispatch({
       type: UPDATE_USER,
       payload: info.data,
@@ -792,7 +793,7 @@ export function updateUser(payload) {
 export function createUser(payload) {
   return async function (dispatch) {
     try {
-      const { data } = await axios.post(`${URL}/users`, payload);
+      const { data } = await axios.post(`/users`, payload);
       dispatch({
         type: CREATE_USER,
         payload: data,
@@ -823,7 +824,7 @@ export function removeFav(id) {
 export function restoreProduct(id) {
   return async function (dispatch) {
     try {
-      await axios.post(`${URL}/products/products/restore/${id}`);
+      await axios.post(`/products/products/restore/${id}`);
       dispatch({
         type: RESTORE_PRODUCT,
         payload: id,
@@ -839,7 +840,7 @@ export function restoreProduct(id) {
 export function restoreUser(id) {
   return async function (dispatch) {
     try {
-      await axios.post(`${URL}/users/user/restore/${id}`);
+      await axios.post(`/users/user/restore/${id}`);
       dispatch({
         type: RESTORE_PRODUCT,
         payload: id,
@@ -865,9 +866,9 @@ export const getFiltersAndPagination = (filtros, pageNumber) => {
     try {
       // Construye la cadena de consulta de la URL para filtros y paginación
       const queryString = new URLSearchParams(filtrosValidos).toString();
-      const url = `${URL}/products?${queryString}&page=${pageNumber}`;
+      const url = `/products?${queryString}&page=${pageNumber}`;
       const response = await axios.get(url);
-
+      console.log(response.data)
       dispatch({
         type: FILTROS_AND_PAGINATION,
         payload: response.data,
@@ -881,7 +882,7 @@ export const getFiltersAndPagination = (filtros, pageNumber) => {
 export function userLogin(email, password) {
   return async function (dispatch) {
     try {
-      const response = await axios.post(`${URL}/users/login`, {
+      const response = await axios.post(`/users/login`, {
         email: email,
         password: password,
       });
@@ -918,7 +919,7 @@ export function userLogeado(user) {
 
 export function getDeletedElements() {
   return async function (dispatch) {
-    const deletedElements = await axios.get(`${URL}/deletedElements`);
+    const deletedElements = await axios.get(`/deletedElements`);
     dispatch({
       type: GET_DELETED_ELEMENTS,
       payload: deletedElements.data,
@@ -928,7 +929,7 @@ export function getDeletedElements() {
 
 export function getDeletedUsers() {
   return async function (dispatch) {
-    const deletedElementsUsers = await axios.get(`${URL}/deletedElements/users`);
+    const deletedElementsUsers = await axios.get(`/deletedElements/users`);
     dispatch({
       type: GET_DELETED_USERS,
       payload: deletedElementsUsers.data,

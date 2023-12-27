@@ -9,6 +9,9 @@ import {store} from './redux/store'; // Importa tu tienda Redux
 
 import App from './app';
 
+
+
+
 // ----------------------------------------------------------------------
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

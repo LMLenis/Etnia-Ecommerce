@@ -42,7 +42,7 @@ const EditUser = () => {
     
       useEffect(() => {
         async function getByID() {
-            const {data} = await axios.get(`http://localhost:3001/users/${id}`)
+            const {data} = await axios.get(`/users/${id}`)
             setInput({id: data.id, name: data.name, last_name: data.last_name, email: data.email, 
                 phone_number: data.phone_number, address: data.address, employee: data.employee,
                 admin: data.admin})

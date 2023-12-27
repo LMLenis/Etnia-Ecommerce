@@ -1,6 +1,6 @@
 export function sendEmail(userEmail, subject, text) {
     // return fetch('http://localhost:3001/send-email', {
-    return fetch('http://localhost:3001/send-email', {
+    return fetch('/send-email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
