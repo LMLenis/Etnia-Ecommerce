@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 
-import "./NotFound.css"
+import "./notFound.css"
 
 export default function NotFound404(props){
     return(
