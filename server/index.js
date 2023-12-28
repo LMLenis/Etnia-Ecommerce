@@ -9,6 +9,8 @@ const prendas = require("./src/controllers/savedInDB");
 const cloudinary = require("cloudinary").v2;
 const reviewsRouter = require("./src/routes/reviewsRouter.js");
 const app = express();
+require("dotenv").config();
+const {PORT}=process.env;
 
 const bodyParser = require('body-parser');
 // app.use(bodyParser.json());
@@ -61,7 +63,7 @@ cloudinary.config({
 });
 
 app.use(express.json());
-const PORT = process.env.PORT || 3001;
+//const PORT = process.env.PORT || 3001;
 
 conn
   .sync({ force: true })
